@@ -22,6 +22,7 @@ namespace QTChinnok.WpfApp
         public MusicCollectionWindow()
         {
             InitializeComponent();
+            ViewModel.Window = this;
         }
     }
 }

@@ -124,6 +124,30 @@
                     </DataGrid>
                 </StackPanel>
             </TabItem>
+            <TabItem Header="MusicCollection(s)">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <Label>Filter:</Label>
+                        <TextBox Width="250" Text="{Binding Path=MusicCollectionFilter, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <Button Width="50" Command="{Binding Path=CommandAddMusicCollection}" Background="Transparent" Foreground="Green" Margin="10 0 0 0">+</Button>
+                    </StackPanel>
+                    <DataGrid ItemsSource="{Binding Path=MusicCollections}"
+                              SelectedItem="{Binding Path=SelectedMusicCollection}"
+                              Height="200"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Album Namen" Width="*" Binding="{Binding Path=AlbumNames}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
