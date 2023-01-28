@@ -108,7 +108,7 @@ namespace QTChinnok.WpfApp.ViewModels
                 {
                     var entity = ctrl.Create();
 
-                    entity.CopyFrom(Model);
+                    entity.CopyFrom(Model); 
                     if (Model.Id == 0)
                     {
                         await ctrl.InsertAsync(entity).ConfigureAwait(false);
