@@ -16,21 +16,23 @@ namespace QTChinnok.WpfApp.Models
         {
             Id = entity.Id;
             Name = entity.Name;
+            Albums = entity.Albums.Select(x => new Album(x)).ToList();
 
             foreach (var item in entity.Albums)
             {
-                if (AlbumText.Length > 0)
+                if (AlbumNames.Length > 0)
                 {
-                    AlbumText += $", {item.Title}";
+                    AlbumNames += $", {item.Title}";
                 }
                 else
                 {
-                    AlbumText = $"{item.Title}";
+                    AlbumNames = $"{item.Title}";
                 }
             }
         }
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string AlbumText { get; set; } = string.Empty;
+        public string AlbumNames { get; set; } = string.Empty;
+        public List<Models.Album> Albums { get; set; } = new();
     }
 }
