@@ -130,6 +130,8 @@
                         <Label>Filter:</Label>
                         <TextBox Width="250" Text="{Binding Path=MusicCollectionFilter, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                         <Button Width="50" Command="{Binding Path=CommandAddMusicCollection}" Background="Transparent" Foreground="Green" Margin="10 0 0 0">+</Button>
+                        <Button Width="100" Command="{Binding Path=CommandEditMusicCollection}" Margin="10 0 0 0">Bearbeiten</Button>
+                        <Button Width="100" Command="{Binding Path=CommandDeleteMusicCollection}" Background="Transparent" Foreground="Red" Margin="10 0 0 0">Löschen</Button>
                     </StackPanel>
                     <DataGrid ItemsSource="{Binding Path=MusicCollections}"
                               SelectedItem="{Binding Path=SelectedMusicCollection}"
