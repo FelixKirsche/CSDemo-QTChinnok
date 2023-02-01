@@ -108,7 +108,15 @@ namespace QTChinnok.WpfApp.ViewModels
                 {
                     var entity = ctrl.Create();
 
-                    entity.CopyFrom(Model); 
+                    entity.CopyFrom(Model);
+
+                    foreach (var item in Model.Albums)
+                    {
+                        var temp = new QTChinnok.Logic.Models.App.Album();
+                        temp.CopyFrom(item);
+                        entity.Albums.Add(temp);
+                    }
+
                     if (Model.Id == 0)
                     {
                         await ctrl.InsertAsync(entity).ConfigureAwait(false);

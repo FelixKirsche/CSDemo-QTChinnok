@@ -291,7 +291,38 @@ namespace QTChinnok.WpfApp.ViewModels
         }
         private void DeleteMusicCollection()
         {
-            throw new NotImplementedException();
+            var result = MessageBox.Show($"Soll der Eintrag '{SelectedMusicCollection?.Name}' gelöscht werden", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                bool error = false;
+                string errorMessage = string.Empty;
+
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        using var ctrl = new Logic.Controllers.App.MusicCollectionsController();
+
+                        await ctrl.DeleteAsync(SelectedMusicCollection!.Id).ConfigureAwait(false);
+                        await ctrl.SaveChangesAsync().ConfigureAwait(false);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        error = true;
+                        errorMessage = ex.Message;
+                    }
+                }).Wait();
+
+                if (error)
+                {
+                    MessageBox.Show(errorMessage, "Löschen", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    OnPropertyChanged(nameof(MusicCollection));
+                }
+            }
         }
 
         private void AddTrack()
